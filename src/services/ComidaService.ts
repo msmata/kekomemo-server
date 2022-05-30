@@ -17,4 +17,9 @@ export class ComidaService {
    public listarComidas(): Comida[] {
       return listadoComidas;
    }
+
+   public agregarComida(comidaNueva: string) {
+      const nuevoId = Math.max(...listadoComidas.map((lc) => lc.id)) + 1;
+      listadoComidas.push({ id: nuevoId, name: comidaNueva });
+   }
 }

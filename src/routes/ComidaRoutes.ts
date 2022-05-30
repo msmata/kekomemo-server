@@ -9,7 +9,7 @@ export class ComidaRoutes {
    }
 
    routes(app: express.Application) {
-      console.log('comidaController de routes => ', this.comidaController);
       app.route('/comidas').get(this.comidaController.listarComidas);
+      app.route('/comidas').post(this.comidaController.agregarComida);
    }
 }
