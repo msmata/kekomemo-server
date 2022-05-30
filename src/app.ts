@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import { ComidaRoutes } from './routes/ComidaRoutes';
+import { RegistroComidaRoutes } from './routes/RegistroComidaRoutes';
 
 class App {
    private comidaRoutes: ComidaRoutes;
+   private registroComidaRoutes: RegistroComidaRoutes;
    public app: express.Application;
 
    constructor() {
@@ -12,8 +14,9 @@ class App {
       this.app.use(express.urlencoded({ extended: true }));
       this.app.use(cors());
       this.comidaRoutes = new ComidaRoutes();
-      console.log('comidaRoutes => ', this.comidaRoutes);
+      this.registroComidaRoutes = new RegistroComidaRoutes();
       this.comidaRoutes.routes(this.app);
+      this.registroComidaRoutes.routes(this.app);
    }
 }
 
