@@ -8,8 +8,8 @@ export class ComidaController {
       this.comidaService = new ComidaService();
    }
 
-   public listarComidas = (_req: Request, res: Response) => {
-      const listadoComidas = this.comidaService.listarComidas();
+   public listarComidas = async (_req: Request, res: Response) => {
+      const listadoComidas = await this.comidaService.listarComidas();
       return res.status(200).send(listadoComidas);
    };
 
