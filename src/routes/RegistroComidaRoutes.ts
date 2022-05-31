@@ -12,5 +12,8 @@ export class RegistroComidaRoutes {
       app.route('/registros').get(
          this.registroComidaController.listarRegistroComidas,
       );
+      app.route('/registros').post(
+         this.registroComidaController.agregarRegistroComida,
+      );
    }
 }

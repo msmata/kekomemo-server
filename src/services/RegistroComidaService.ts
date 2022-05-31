@@ -17,4 +17,9 @@ export class RegistroComidaService {
    public listarRegistros(): RegistroComidas[] {
       return registroComidas;
    }
+
+   public agregarRegistroComida(registroNuevo: RegistroComidas) {
+      const nuevoId = Math.max(...registroComidas.map((rc) => rc.id)) + 1;
+      registroComidas.push({ ...registroNuevo, id: nuevoId });
+   }
 }
