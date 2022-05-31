@@ -3,17 +3,10 @@ import {
    getDocs,
    CollectionReference,
    DocumentData,
+   addDoc,
 } from 'firebase/firestore';
 
 import { db } from '../config/firebase-config';
-
-const listadoComidas: Comida[] = [
-   { id: '1', name: 'Guiso de lentejas' },
-   { id: '2', name: 'Ravioles' },
-   { id: '3', name: 'Fideos' },
-   { id: '4', name: 'Milanesas' },
-   { id: '5', name: 'Hamburguesas' },
-];
 
 type Comida = {
    id: string;
@@ -35,9 +28,10 @@ export class ComidaService {
       return comidasDB;
    }
 
-   public agregarComida(comidaNueva: string) {
-      const nuevoId =
-         Math.max(...listadoComidas.map((lc) => parseInt(lc.id))) + 1;
-      listadoComidas.push({ id: nuevoId.toString(), name: comidaNueva });
+   public async agregarComida(comidaNueva: string) {
+      const comidas = await this.listarComidas();
+      if (!comidas.find((c) => c.name === comidaNueva)) {
+         await addDoc(this.comidasCollectionRef, { name: comidaNueva });
+      }
    }
 }

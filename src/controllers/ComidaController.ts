@@ -13,9 +13,9 @@ export class ComidaController {
       return res.status(200).send(listadoComidas);
    };
 
-   public agregarComida = (req: Request, res: Response) => {
+   public agregarComida = async (req: Request, res: Response) => {
       const comidaNueva = req.body.nombreComida;
-      this.comidaService.agregarComida(comidaNueva);
+      await this.comidaService.agregarComida(comidaNueva);
       return res.status(200).send('OK');
    };
 }
