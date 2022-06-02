@@ -8,8 +8,9 @@ export class RegistroComidaController {
       this.registroComidaService = new RegistroComidaService();
    }
 
-   public listarRegistroComidas = (_req: Request, res: Response) => {
-      const registroComidas = this.registroComidaService.listarRegistros();
+   public listarRegistroComidas = async (_req: Request, res: Response) => {
+      const registroComidas =
+         await this.registroComidaService.listarRegistros();
       return res.status(200).send(registroComidas);
    };
 
@@ -18,7 +19,7 @@ export class RegistroComidaController {
       const fecha = req.body.fecha;
       const tipoComida = req.body.tipoComida;
       this.registroComidaService.agregarRegistroComida({
-         id: 1,
+         id: '1',
          idComida,
          fecha,
          tipoComida,
