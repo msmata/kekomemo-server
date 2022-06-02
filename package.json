@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "firebase": "^9.8.2"
   },
@@ -20,7 +21,7 @@
   "scripts": {
     "clean": "npx rimraf dist",
     "build": "yarn clean && yarn format && npx tsc",
-    "start": "yarn build && node ./dist/server.js",
+    "start": "yarn build && node --require dotenv/config ./dist/server.js",
     "format": "npx prettier --write 'src/**/*.ts'"
   }
 }
